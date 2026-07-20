@@ -1,26 +1,26 @@
 # 🛡️ TalentGuard AI
-### AI-Powered Employee Attrition Analytics Platform
 
-TalentGuard AI is an end-to-end machine learning application that predicts employee attrition risk and provides explainable AI insights to help HR teams identify employees who may be at risk of leaving.
+> **AI-Powered Employee Attrition Analytics Platform with Explainable AI**
 
-The project combines machine learning, explainable AI (SHAP), and a FastAPI-powered backend to deliver both individual employee predictions and batch CSV analysis.
+TalentGuard AI is an end-to-end Machine Learning application that predicts employee attrition risk and provides explainable AI insights using SHAP. It helps HR teams identify employees who are likely to leave and understand the key factors influencing each prediction.
 
 ---
 
 ## 🚀 Features
 
-- 🔮 Predict employee attrition risk
-- 📊 Risk probability score
+- 🔮 Single Employee Attrition Prediction
+- 📁 Batch CSV Prediction
+- 📊 Employee Risk Probability
 - 🧠 Explainable AI using SHAP
-- 📁 Batch CSV prediction
-- 📈 HR analytics dashboard *(Coming Soon)*
-- 📄 CSV & PDF report generation *(Coming Soon)*
-- 🌐 REST API using FastAPI *(Coming Soon)*
-- 🎨 Interactive frontend *(Coming Soon)*
+- 📈 Global & Local Feature Importance
+- 📄 CSV Report Generation *(Coming Soon)*
+- 📑 PDF Report Generation *(Coming Soon)*
+- 🌐 REST API with FastAPI *(Coming Soon)*
+- 📊 Interactive HR Dashboard *(Coming Soon)*
 
 ---
 
-## 🛠 Tech Stack
+# 🛠️ Tech Stack
 
 ### Machine Learning
 - Python
@@ -77,15 +77,13 @@ TalentGuard_AI/
 
 # 📊 Dataset
 
-Dataset Used:
-
 **IBM HR Analytics Employee Attrition Dataset**
 
-The dataset contains employee demographic, job, compensation, and performance information used to predict attrition.
+The dataset contains employee demographic, job, compensation and work-related information used to predict whether an employee is at risk of leaving the organization.
 
 ---
 
-# 🤖 Machine Learning Pipeline
+# ⚙️ Machine Learning Pipeline
 
 - Data Cleaning
 - Exploratory Data Analysis (EDA)
@@ -99,18 +97,20 @@ The dataset contains employee demographic, job, compensation, and performance in
 
 ---
 
-# 🧪 Models Evaluated
+# 🤖 Models Evaluated
 
 - Logistic Regression
 - Decision Tree
 - Random Forest
 - XGBoost
 
-Random Forest was selected as the final production model after hyperparameter tuning and threshold optimization.
+After hyperparameter tuning and evaluation, **Random Forest** was selected as the final deployment model.
 
 ---
 
 # 📈 Model Performance
+
+## Random Forest (Default Threshold = 0.50)
 
 | Metric | Score |
 |---------|-------|
@@ -120,29 +120,48 @@ Random Forest was selected as the final production model after hyperparameter tu
 | F1 Score | **50.49%** |
 | ROC-AUC | **0.784** |
 
-**Decision Threshold:** `0.35`
+---
+
+## 🚀 Deployment Threshold
+
+The application is deployed using a **decision threshold of 0.35** instead of the default **0.50**.
+
+This improves the model's ability to identify employees who are at risk of leaving.
+
+| Metric | Score |
+|---------|-------|
+| Precision | 35.6% |
+| Recall | **76.6%** |
+| F1 Score | 48.6% |
+
+> **Why 0.35?**
+>
+> In employee attrition prediction, missing an employee who is likely to leave is often more costly than incorrectly flagging someone who stays. Therefore, the deployment threshold was lowered from **0.50** to **0.35** to significantly improve recall and help HR identify more at-risk employees.
 
 ---
 
 # 🧠 Explainable AI (SHAP)
 
-The model provides both:
+The project uses SHAP (SHapley Additive exPlanations) to provide transparent and interpretable predictions.
 
 ### Global Explainability
+
 - SHAP Summary Plot
 - SHAP Feature Importance
 
 ### Local Explainability
-- Waterfall Plot
-- Top Risk Factors
-- Employee-level prediction explanation
 
-Example:
+- Waterfall Plot
+- Employee-level Prediction Explanation
+- Top Contributing Features
+
+Example Output
 
 ```json
 {
     "Prediction": "High Risk",
     "Probability": 0.7286,
+    "Threshold": 0.35,
     "Top Factors": [
         "Total Working Years",
         "Years With Current Manager",
@@ -155,15 +174,14 @@ Example:
 
 ---
 
-# 🚀 Future Roadmap
+# 📌 Future Roadmap
 
 - FastAPI Backend
 - REST APIs
-- Batch CSV Upload
-- HR Dashboard
-- Employee Analytics
+- Batch CSV Prediction
+- Interactive Dashboard
 - PDF Report Generation
-- Docker Deployment
+- Docker Support
 - AWS EC2 Deployment
 
 ---
@@ -190,24 +208,30 @@ pip install -r requirements.txt
 
 ---
 
-# 📌 Project Status
+# 📋 Current Project Status
 
 | Module | Status |
 |---------|--------|
 | Data Cleaning | ✅ |
-| EDA | ✅ |
+| Exploratory Data Analysis | ✅ |
 | Feature Engineering | ✅ |
 | Model Training | ✅ |
 | Hyperparameter Tuning | ✅ |
 | Threshold Optimization | ✅ |
 | SHAP Explainability | ✅ |
-| FastAPI Backend | 🚧 |
-| Frontend | 🚧 |
-| Deployment | 🚧 |
+| FastAPI Backend | 🚧 In Progress |
+| Frontend | 🚧 Planned |
+| Deployment | 🚧 Planned |
 
 ---
 
-# 📄 License
+# 🤝 Contributing
+
+Contributions, suggestions, and improvements are welcome. Feel free to fork the repository and submit a pull request.
+
+---
+
+# 📜 License
 
 This project is licensed under the MIT License.
 
