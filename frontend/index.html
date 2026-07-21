@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>TalentGuard AI</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <h1>TalentGuard AI</h1>
+
+        <p>
+            AI Powered Employee Attrition Prediction
+        </p>
+
+    </header>
+
+    <div class="dashboard">
+
+        <!-- ================= LEFT CARD ================= -->
+
+        <div class="card">
+
+            <h2>Employee Details</h2>
+
+            <form
+                id="predictionForm"
+                autocomplete="off"
+            >
+
+                <!-- ================= PERSONAL INFORMATION ================= -->
+
+                <h3>Personal Information</h3>
+
+                <div class="form-grid">
+
+                    <!-- Age -->
+
+                    <div class="form-group">
+
+                        <label for="Age">
+                            Age
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Age"
+                            min="18"
+                            max="60"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- Gender -->
+
+                    <div class="form-group">
+
+                        <label for="Gender">
+                            Gender
+                        </label>
+
+                        <select
+                            id="Gender"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option>
+                                Male
+                            </option>
+
+                            <option>
+                                Female
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Marital Status -->
+
+                    <div class="form-group">
+
+                        <label for="MaritalStatus">
+                            Marital Status
+                        </label>
+
+                        <select
+                            id="MaritalStatus"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option>
+                                Single
+                            </option>
+
+                            <option>
+                                Married
+                            </option>
+
+                            <option>
+                                Divorced
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+<!-- ================= JOB INFORMATION ================= -->
+
+<h3>Job Information</h3>
+
+<div class="form-grid">
+
+    <!-- Department -->
+
+    <div class="form-group">
+
+        <label for="Department">
+            Department
+        </label>
+
+        <select
+            id="Department"
+            required
+        >
+
+            <option value="">
+                Select
+            </option>
+
+            <option>
+                Sales
+            </option>
+
+            <option>
+                Research &amp; Development
+            </option>
+
+            <option>
+                Human Resources
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- Job Role -->
+
+    <div class="form-group">
+
+        <label for="JobRole">
+            Job Role
+        </label>
+
+        <select
+            id="JobRole"
+            required
+        >
+
+            <option value="">
+                Select
+            </option>
+
+            <option>Sales Executive</option>
+            <option>Research Scientist</option>
+            <option>Laboratory Technician</option>
+            <option>Manufacturing Director</option>
+            <option>Healthcare Representative</option>
+            <option>Manager</option>
+            <option>Sales Representative</option>
+            <option>Research Director</option>
+            <option>Human Resources</option>
+
+        </select>
+
+    </div>
+
+    <!-- Business Travel -->
+
+    <div class="form-group">
+
+        <label for="BusinessTravel">
+            Business Travel
+        </label>
+
+        <select
+            id="BusinessTravel"
+            required
+        >
+
+            <option value="">
+                Select
+            </option>
+
+            <option>Non-Travel</option>
+            <option>Travel_Rarely</option>
+            <option>Travel_Frequently</option>
+
+        </select>
+
+    </div>
+
+    <!-- Over Time -->
+
+    <div class="form-group">
+
+        <label for="OverTime">
+            Over Time
+        </label>
+
+        <select
+            id="OverTime"
+            required
+        >
+
+            <option value="">
+                Select
+            </option>
+
+            <option>No</option>
+            <option>Yes</option>
+
+        </select>
+
+    </div>
+
+</div>
+
+<!-- ================= COMPENSATION ================= -->
+
+<h3>Compensation</h3>
+
+<div class="form-grid">
+
+    <!-- Monthly Income -->
+
+    <div class="form-group">
+
+        <label for="MonthlyIncome">
+            Monthly Income
+        </label>
+
+        <input
+            type="number"
+            id="MonthlyIncome"
+            min="1000"
+            required
+        >
+
+    </div>
+
+    <!-- Stock Option Level -->
+
+    <div class="form-group">
+
+        <label for="StockOptionLevel">
+            Stock Option Level
+        </label>
+
+        <input
+            type="number"
+            id="StockOptionLevel"
+            min="0"
+            max="3"
+            required
+        >
+
+    </div>
+
+</div>
+<h3>Performance & Satisfaction</h3>
+
+<div class="form-grid">
+
+    <!-- Environment Satisfaction -->
+
+    <div class="form-group">
+
+        <label for="EnvironmentSatisfaction">
+            Environment Satisfaction
+        </label>
+
+        <input
+            type="number"
+            id="EnvironmentSatisfaction"
+            min="1"
+            max="4"
+            required
+        >
+
+    </div>
+
+    <!-- Job Satisfaction -->
+
+    <div class="form-group">
+
+        <label for="JobSatisfaction">
+            Job Satisfaction
+        </label>
+
+        <input
+            type="number"
+            id="JobSatisfaction"
+            min="1"
+            max="4"
+            required
+        >
+
+    </div>
+
+    <!-- Work Life Balance -->
+
+    <div class="form-group">
+
+        <label for="WorkLifeBalance">
+            Work Life Balance
+        </label>
+
+        <input
+            type="number"
+            id="WorkLifeBalance"
+            min="1"
+            max="4"
+            required
+        >
+
+    </div>
+
+</div>
+
+<!-- ================= EXPERIENCE ================= -->
+
+<h3>Experience</h3>
+
+<div class="form-grid">
+
+    <!-- Total Working Years -->
+
+    <div class="form-group">
+
+        <label for="TotalWorkingYears">
+            Total Working Years
+        </label>
+
+        <input
+            type="number"
+            id="TotalWorkingYears"
+            min="0"
+            required
+        >
+
+    </div>
+
+    <!-- Years At Company -->
+
+    <div class="form-group">
+
+        <label for="YearsAtCompany">
+            Years At Company
+        </label>
+
+        <input
+            type="number"
+            id="YearsAtCompany"
+            min="0"
+            required
+        >
+
+    </div>
+
+    <!-- Years With Current Manager -->
+
+    <div class="form-group">
+
+        <label for="YearsWithCurrManager">
+            Years With Current Manager
+        </label>
+
+        <input
+            type="number"
+            id="YearsWithCurrManager"
+            min="0"
+            required
+        >
+
+    </div>
+
+</div>
+
+<!-- ================= SUBMIT BUTTON ================= -->
+
+<button
+    id="predictBtn"
+    class="predict-btn"
+    type="submit"
+>
+
+    Predict Employee
+
+</button>
+
+</form>
+
+</div>
+
+<!-- ================= RIGHT CARD ================= -->
+<div class="card result-card">
+
+    <h2>Prediction Result</h2>
+
+    <div id="result">
+
+        <div class="placeholder">
+
+            <div class="placeholder-icon">
+                📊
+            </div>
+
+            <h3>
+                No Prediction Yet
+            </h3>
+
+            <p>
+
+                Fill all employee details and click
+
+                <strong>
+                    Predict Employee
+                </strong>
+
+                to generate an AI prediction.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,788 @@
+/* ==========================================
+   GOOGLE FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+/* ==========================================
+   BODY
+========================================== */
+
+body{
+
+    background:linear-gradient(
+        135deg,
+        #eef5ff 0%,
+        #f8fbff 50%,
+        #ffffff 100%
+    );
+
+    color:#1e293b;
+
+}
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.container{
+
+    width:90%;
+
+    max-width:1500px;
+
+    height:100vh;
+
+    margin:auto;
+
+    padding:20px 0;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+header{
+
+    text-align:center;
+
+    margin-bottom:18px;
+
+}
+
+header h1{
+
+    font-size:36px;
+
+    color:#2563eb;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+header p{
+
+    color:#64748b;
+
+    margin-top:8px;
+
+    font-size:16px;
+
+}
+
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+.dashboard{
+
+    flex:1;
+
+    display:grid;
+
+    grid-template-columns:1.35fr .95fr;
+
+    gap:22px;
+
+    overflow:hidden;
+
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    box-shadow:
+        0 10px 30px rgba(37,99,235,.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 18px 40px rgba(37,99,235,.12);
+
+}
+
+.card h2{
+
+    color:#2563eb;
+
+    font-size:24px;
+
+    margin-bottom:18px;
+
+}
+
+/* ==========================================
+   LEFT FORM SCROLL
+========================================== */
+
+#predictionForm{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding-right:8px;
+
+}
+
+#predictionForm::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+#predictionForm::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+
+}
+
+/* ==========================================
+   SECTION HEADINGS
+========================================== */
+
+form h3{
+
+    margin:28px 0 18px;
+
+    padding-left:12px;
+
+    border-left:5px solid #2563eb;
+
+    color:#2563eb;
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   FORM GRID
+========================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:10px;
+
+}
+
+/* ==========================================
+   FORM GROUP
+========================================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.form-group label{
+
+    font-size:14px;
+
+    font-weight:500;
+
+    color:#334155;
+
+    margin-bottom:8px;
+
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+.form-group input,
+.form-group select{
+
+    width:100%;
+
+    padding:13px 15px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    background:#fff;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.form-group input:hover,
+.form-group select:hover{
+
+    border-color:#3b82f6;
+
+}
+
+.form-group input:focus,
+.form-group select:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+/* ==========================================
+   REQUIRED FIELD ERROR
+========================================== */
+
+input:invalid,
+select:invalid{
+
+    border-color:#ef4444;
+
+}
+
+input:valid,
+select:valid{
+
+    border-color:#22c55e;
+
+}
+
+/* ==========================================
+   PLACEHOLDER
+========================================== */
+
+input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.predict-btn{
+
+    margin-top:30px;
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.predict-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+.predict-btn:active{
+
+    transform:scale(.98);
+
+}
+
+.predict-btn:disabled{
+
+    background:#94a3b8;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+/* ==========================================
+   RESULT CARD
+========================================== */
+
+.result-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+#result{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    border:2px dashed #dbeafe;
+
+    background:#f8fbff;
+
+}
+
+#result::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+#result::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+
+}
+
+/* ==========================================
+   PLACEHOLDER
+========================================== */
+
+.placeholder{
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    color:#64748b;
+
+    padding:30px;
+
+}
+
+.placeholder-icon{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+
+}
+
+.placeholder h3{
+
+    color:#2563eb;
+
+    margin-bottom:12px;
+
+    font-size:26px;
+
+}
+
+.placeholder p{
+
+    max-width:320px;
+
+    line-height:1.7;
+
+}
+
+/* ==========================================
+   RESULT BOX
+========================================== */
+
+.result-box{
+
+    width:100%;
+
+    animation:fadeIn .4s ease;
+
+}
+
+.result-box h3{
+
+    text-align:center;
+
+    font-size:32px;
+
+    margin-bottom:18px;
+
+}
+
+.result-box p{
+
+    margin:12px 0;
+
+    line-height:1.6;
+
+    color:#475569;
+
+}
+
+.result-box hr{
+
+    border:none;
+
+    border-top:1px solid #e2e8f0;
+
+    margin:20px 0;
+
+}
+
+/* ==========================================
+   RISK COLORS
+========================================== */
+
+.high-risk{
+
+    color:#dc2626;
+
+}
+
+.low-risk{
+
+    color:#16a34a;
+
+}
+
+.monitor{
+
+    color:#f59e0b;
+
+}
+
+.priority{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:25px;
+
+    margin-top:10px;
+
+    font-weight:600;
+
+    color:white;
+
+}
+
+.priority.high{
+
+    background:#dc2626;
+
+}
+
+.priority.low{
+
+    background:#16a34a;
+
+}
+
+.priority.monitor{
+
+    background:#f59e0b;
+
+}
+
+/* ==========================================
+   SHAP CARDS
+========================================== */
+
+.factor-card{
+
+    background:white;
+
+    border-left:5px solid #2563eb;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    margin-top:18px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+
+    transition:.3s;
+
+}
+
+.factor-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.factor-card h4{
+
+    color:#2563eb;
+
+    margin-bottom:12px;
+
+    font-size:18px;
+
+}
+
+.factor-card p{
+
+    margin:8px 0;
+
+    font-size:14px;
+
+}
+
+.risk-up{
+
+    color:#dc2626;
+
+    font-weight:600;
+
+}
+
+.risk-down{
+
+    color:#16a34a;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   LOADING
+========================================== */
+
+.loading{
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.spinner{
+
+    width:55px;
+
+    height:55px;
+
+    border:6px solid #dbeafe;
+
+    border-top:6px solid #2563eb;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+.loading p{
+
+    color:#2563eb;
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1100px){
+
+    html,
+    body{
+
+        overflow:auto;
+
+    }
+
+    .container{
+
+        height:auto;
+
+        width:95%;
+
+        padding:15px 0;
+
+    }
+
+    .dashboard{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .card{
+
+        height:auto;
+
+    }
+
+    #predictionForm{
+
+        max-height:none;
+
+        overflow:visible;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    header h1{
+
+        font-size:28px;
+
+    }
+
+    header p{
+
+        font-size:14px;
+
+    }
+
+    .card{
+
+        padding:16px;
+
+    }
+
+    .predict-btn{
+
+        font-size:15px;
+
+    }
+
+    .placeholder-icon{
+
+        font-size:50px;
+
+    }
+
+    .result-box h3{
+
+        font-size:24px;
+
+    }
+
+}

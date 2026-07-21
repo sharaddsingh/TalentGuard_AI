@@ -3,6 +3,7 @@ from typing import Literal
 
 
 class Employee(BaseModel):
+
     Age: int
 
     BusinessTravel: Literal[
@@ -20,8 +21,18 @@ class Employee(BaseModel):
     ]
 
     DistanceFromHome: int
+
     Education: int
-    EducationField: str
+
+    EducationField: Literal[
+        "Life Sciences",
+        "Medical",
+        "Marketing",
+        "Technical Degree",
+        "Human Resources",
+        "Other"
+    ]
+
     EnvironmentSatisfaction: int
 
     Gender: Literal[
@@ -30,10 +41,22 @@ class Employee(BaseModel):
     ]
 
     HourlyRate: int
+
     JobInvolvement: int
+
     JobLevel: int
 
-    JobRole: str
+    JobRole: Literal[
+        "Sales Executive",
+        "Research Scientist",
+        "Laboratory Technician",
+        "Manufacturing Director",
+        "Healthcare Representative",
+        "Manager",
+        "Sales Representative",
+        "Research Director",
+        "Human Resources"
+    ]
 
     JobSatisfaction: int
 
@@ -44,6 +67,7 @@ class Employee(BaseModel):
     ]
 
     MonthlyIncome: int
+
     MonthlyRate: int
 
     NumCompaniesWorked: int
@@ -54,13 +78,23 @@ class Employee(BaseModel):
     ]
 
     PercentSalaryHike: int
+
     PerformanceRating: int
+
     RelationshipSatisfaction: int
+
     StockOptionLevel: int
+
     TotalWorkingYears: int
+
     TrainingTimesLastYear: int
+
     WorkLifeBalance: int
+
     YearsAtCompany: int
+
     YearsInCurrentRole: int
+
     YearsSinceLastPromotion: int
+
     YearsWithCurrManager: int
