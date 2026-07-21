@@ -11,8 +11,9 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+allow_origins=[
+    "https://talentguard-frontend.onrender.com",
+],
     allow_methods=["*"],
     allow_headers=["*"],
 )
