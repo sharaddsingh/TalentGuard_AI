@@ -3,8 +3,7 @@
 // Frontend Logic
 // ============================================
 
-const API_URL = "http://127.0.0.1:8000/predict";
-
+const API_URL = "https://talentguard-backend.onrender.com/predict";
 const form = document.getElementById("predictionForm");
 const resultDiv = document.getElementById("result");
 const predictBtn = document.getElementById("predictBtn");
