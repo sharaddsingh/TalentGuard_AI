@@ -1,240 +1,181 @@
-# 🛡️ TalentGuard AI
+🛡️ TalentGuard AI
 
-> **AI-Powered Employee Attrition Analytics Platform with Explainable AI**
+AI-Powered Employee Attrition Prediction Platform with Explainable AI
 
-TalentGuard AI is an end-to-end Machine Learning application that predicts employee attrition risk and provides explainable AI insights using SHAP. It helps HR teams identify employees who are likely to leave and understand the key factors influencing each prediction.
+TalentGuard AI is an end-to-end Machine Learning application that predicts employee attrition risk and provides explainable AI insights using SHAP. The platform helps HR teams identify employees at risk of leaving and understand the key factors influencing each prediction through an interactive web application.
 
----
+🌐 Live Demo
+🚀 Frontend
 
-## 🚀 Features
+https://talentguard-frontend.onrender.com/
 
-- 🔮 Single Employee Attrition Prediction
-- 📁 Batch CSV Prediction
-- 📊 Employee Risk Probability
-- 🧠 Explainable AI using SHAP
-- 📈 Global & Local Feature Importance
-- 📄 CSV Report Generation *(Coming Soon)*
-- 📑 PDF Report Generation *(Coming Soon)*
-- 🌐 REST API with FastAPI *(Coming Soon)*
-- 📊 Interactive HR Dashboard *(Coming Soon)*
+⚙️ Backend API
 
----
+https://talentguard-backend.onrender.com/
 
-# 🛠️ Tech Stack
+📖 API Documentation
 
-### Machine Learning
-- Python
-- Scikit-learn
-- XGBoost
-- Pandas
-- NumPy
+https://talentguard-backend.onrender.com/docs
 
-### Explainable AI
-- SHAP
-
-### Backend *(Upcoming)*
-- FastAPI
-- Uvicorn
-
-### Frontend *(Upcoming)*
-- HTML
-- CSS
-- JavaScript
-- Chart.js
-
-### Deployment *(Upcoming)*
-- Docker
-- Nginx
-- AWS EC2
-
----
-
-# 📂 Project Structure
-
-```text
+🚀 Features
+🔮 Single Employee Attrition Prediction
+📊 Attrition Probability Score
+🎯 HR Risk Priority Classification
+🧠 Explainable AI using SHAP
+💡 AI-Generated Prediction Summary
+⚡ FastAPI REST API
+🎨 Responsive HTML/CSS/JavaScript Dashboard
+☁️ Deployed Frontend & Backend on Render
+🚧 Planned Features
+📁 Batch CSV Prediction
+📄 CSV Report Generation
+📑 PDF Report Generation
+📊 HR Analytics Dashboard
+📈 Prediction History
+🛠️ Tech Stack
+Frontend
+HTML5
+CSS3
+JavaScript
+Backend
+FastAPI
+Uvicorn
+Pydantic
+Machine Learning
+Python
+Scikit-learn
+XGBoost
+Pandas
+NumPy
+Explainable AI
+SHAP
+Deployment
+Render (Frontend)
+Render (Backend)
+📂 Project Structure
 TalentGuard_AI/
 
 ├── backend/
+│   ├── app.py
+│   ├── routers/
+│   ├── services/
+│   ├── schemas/
+│   ├── utils/
+│   └── models/
+│       ├── attrition_pipeline.pkl
+│       ├── shap_explainer.pkl
+│       └── threshold.pkl
+│
 ├── frontend/
-├── data/
-│   ├── raw/
-│   └── processed/
-├── models/
-│   ├── attrition_pipeline.pkl
-│   └── threshold.pkl
+│   ├── index.html
+│   ├── css/
+│   ├── js/
+│   └── assets/
+│
 ├── notebooks/
-│   ├── 01_eda.ipynb
-│   ├── 02_Preprocessing.ipynb
-│   ├── 03_models.ipynb
-│   ├── 04_Hyperparameter_Tuning.ipynb
-│   └── 05_SHAP_Explainability.ipynb
+├── data/
 ├── reports/
 ├── requirements.txt
 └── README.md
-```
+📊 Dataset
 
----
+IBM HR Analytics Employee Attrition Dataset
 
-# 📊 Dataset
+The dataset contains employee demographic, compensation, job role, and work-related attributes used to predict employee attrition.
 
-**IBM HR Analytics Employee Attrition Dataset**
+⚙️ Machine Learning Pipeline
+Data Cleaning
+Exploratory Data Analysis (EDA)
+Feature Engineering
+Data Preprocessing
+Model Training
+Hyperparameter Tuning
+Threshold Optimization
+SHAP Explainability
+Model Serialization
+FastAPI Deployment
+🤖 Model
 
-The dataset contains employee demographic, job, compensation and work-related information used to predict whether an employee is at risk of leaving the organization.
+The final deployed model is:
 
----
+XGBoost Classifier
 
-# ⚙️ Machine Learning Pipeline
+The model was selected after evaluating multiple machine learning algorithms based on classification performance and explainability.
 
-- Data Cleaning
-- Exploratory Data Analysis (EDA)
-- Feature Engineering
-- Data Preprocessing
-- Model Training
-- Hyperparameter Tuning
-- Threshold Optimization
-- SHAP Explainability
-- Model Serialization
+Models evaluated:
 
----
+Logistic Regression
+Decision Tree
+Random Forest
+XGBoost
+📈 Model Performance
+Default Threshold (0.50)
+Metric	Score
+Accuracy	82.65%
+Precision	46.43%
+Recall	55.32%
+F1 Score	50.49%
+ROC-AUC	0.784
+Production Threshold (0.35)
+Metric	Score
+Precision	35.6%
+Recall	76.6%
+F1 Score	48.6%
+Why use a threshold of 0.35?
 
-# 🤖 Models Evaluated
+Employee attrition prediction prioritizes identifying employees who are likely to leave. Lowering the decision threshold from 0.50 to 0.35 improves recall, enabling HR teams to proactively engage with more at-risk employees, even if it increases the number of false positives.
 
-- Logistic Regression
-- Decision Tree
-- Random Forest
-- XGBoost
+🧠 Explainable AI (SHAP)
 
-After hyperparameter tuning and evaluation, **Random Forest** was selected as the final deployment model.
+TalentGuard AI uses SHAP (SHapley Additive exPlanations) to make predictions transparent and interpretable.
 
----
+Global Explainability
+SHAP Summary Plot
+Feature Importance Plot
+Local Explainability
+Employee-level Explanation
+Top Contributing Features
+AI-generated Natural Language Summary
 
-# 📈 Model Performance
+Example Response
 
-## Random Forest (Default Threshold = 0.50)
-
-| Metric | Score |
-|---------|-------|
-| Accuracy | 82.65% |
-| Precision | 46.43% |
-| Recall | 55.32% |
-| F1 Score | **50.49%** |
-| ROC-AUC | **0.784** |
-
----
-
-## 🚀 Deployment Threshold
-
-The application is deployed using a **decision threshold of 0.35** instead of the default **0.50**.
-
-This improves the model's ability to identify employees who are at risk of leaving.
-
-| Metric | Score |
-|---------|-------|
-| Precision | 35.6% |
-| Recall | **76.6%** |
-| F1 Score | 48.6% |
-
-> **Why 0.35?**
->
-> In employee attrition prediction, missing an employee who is likely to leave is often more costly than incorrectly flagging someone who stays. Therefore, the deployment threshold was lowered from **0.50** to **0.35** to significantly improve recall and help HR identify more at-risk employees.
-
----
-
-# 🧠 Explainable AI (SHAP)
-
-The project uses SHAP (SHapley Additive exPlanations) to provide transparent and interpretable predictions.
-
-### Global Explainability
-
-- SHAP Summary Plot
-- SHAP Feature Importance
-
-### Local Explainability
-
-- Waterfall Plot
-- Employee-level Prediction Explanation
-- Top Contributing Features
-
-Example Output
-
-```json
 {
-    "Prediction": "High Risk",
-    "Probability": 0.7286,
-    "Threshold": 0.35,
-    "Top Factors": [
-        "Total Working Years",
-        "Years With Current Manager",
-        "Years At Company",
-        "Monthly Income",
-        "Age"
-    ]
+  "prediction": "High Risk",
+  "probability": 0.7286,
+  "threshold": 0.35,
+  "top_factors": [
+    "Total Working Years",
+    "Years With Current Manager",
+    "Years At Company",
+    "Monthly Income",
+    "Age"
+  ]
 }
-```
-
----
-
-# 📌 Future Roadmap
-
-- FastAPI Backend
-- REST APIs
-- Batch CSV Prediction
-- Interactive Dashboard
-- PDF Report Generation
-- Docker Support
-- AWS EC2 Deployment
-
----
-
-# ⚙️ Installation
-
-Clone the repository
-
-```bash
+🏗️ System Architecture
+                Employee Details
+                        │
+                        ▼
+             HTML • CSS • JavaScript
+                  (Frontend UI)
+                        │
+                  REST API Request
+                        │
+                        ▼
+                  FastAPI Backend
+                        │
+                        ▼
+              XGBoost Prediction Model
+                        │
+                        ▼
+                 SHAP Explainability
+                        │
+                        ▼
+      Probability • Risk Level • AI Summary
+⚙️ Installation
 git clone https://github.com/sharaddsingh/TalentGuard_AI.git
-```
 
-Move into the project
-
-```bash
 cd TalentGuard_AI
-```
 
-Install dependencies
-
-```bash
 pip install -r requirements.txt
-```
 
----
-
-# 📋 Current Project Status
-
-| Module | Status |
-|---------|--------|
-| Data Cleaning | ✅ |
-| Exploratory Data Analysis | ✅ |
-| Feature Engineering | ✅ |
-| Model Training | ✅ |
-| Hyperparameter Tuning | ✅ |
-| Threshold Optimization | ✅ |
-| SHAP Explainability | ✅ |
-| FastAPI Backend | 🚧 In Progress |
-| Frontend | 🚧 Planned |
-| Deployment | 🚧 Planned |
-
----
-
-# 🤝 Contributing
-
-Contributions, suggestions, and improvements are welcome. Feel free to fork the repository and submit a pull request.
-
----
-
-# 📜 License
-
-This project is licensed under the MIT License.
-
----
-
-## ⭐ If you found this project useful, consider giving it a star!
+uvicorn backend.app:app --reload
