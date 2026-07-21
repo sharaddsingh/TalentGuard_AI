@@ -30,14 +30,14 @@
         <h1>TalentGuard AI</h1>
 
         <p>
-            AI Powered Employee Attrition Prediction
+            Employee Attrition Prediction & Explainable AI Dashboard
         </p>
 
     </header>
 
     <div class="dashboard">
 
-        <!-- ================= LEFT CARD ================= -->
+        <!-- ================= LEFT PANEL ================= -->
 
         <div class="card">
 
@@ -59,7 +59,9 @@
                     <div class="form-group">
 
                         <label for="Age">
+
                             Age
+
                         </label>
 
                         <input
@@ -77,7 +79,9 @@
                     <div class="form-group">
 
                         <label for="Gender">
+
                             Gender
+
                         </label>
 
                         <select
@@ -86,7 +90,7 @@
                         >
 
                             <option value="">
-                                Select
+                                Select Gender
                             </option>
 
                             <option>
@@ -106,7 +110,9 @@
                     <div class="form-group">
 
                         <label for="MaritalStatus">
+
                             Marital Status
+
                         </label>
 
                         <select
@@ -115,7 +121,7 @@
                         >
 
                             <option value="">
-                                Select
+                                Select Status
                             </option>
 
                             <option>
@@ -135,128 +141,137 @@
                     </div>
 
                 </div>
-<!-- ================= JOB INFORMATION ================= -->
 
-<h3>Job Information</h3>
+                <!-- ================= JOB INFORMATION ================= -->
 
-<div class="form-grid">
+                <h3>Job Information</h3>
 
-    <!-- Department -->
+                <div class="form-grid">
 
-    <div class="form-group">
+                    <!-- Department -->
 
-        <label for="Department">
-            Department
-        </label>
+                    <div class="form-group">
 
-        <select
-            id="Department"
-            required
-        >
+                        <label for="Department">
 
-            <option value="">
-                Select
-            </option>
+                            Department
 
-            <option>
-                Sales
-            </option>
+                        </label>
 
-            <option>
-                Research &amp; Development
-            </option>
+                        <select
+                            id="Department"
+                            required
+                        >
 
-            <option>
-                Human Resources
-            </option>
+                            <option value="">
+                                Select Department
+                            </option>
 
-        </select>
+                            <option>
+                                Sales
+                            </option>
 
-    </div>
+                            <option>
+                                Research &amp; Development
+                            </option>
 
-    <!-- Job Role -->
+                            <option>
+                                Human Resources
+                            </option>
 
-    <div class="form-group">
+                        </select>
 
-        <label for="JobRole">
-            Job Role
-        </label>
+                    </div>
 
-        <select
-            id="JobRole"
-            required
-        >
+                    <!-- Job Role -->
 
-            <option value="">
-                Select
-            </option>
+                    <div class="form-group">
 
-            <option>Sales Executive</option>
-            <option>Research Scientist</option>
-            <option>Laboratory Technician</option>
-            <option>Manufacturing Director</option>
-            <option>Healthcare Representative</option>
-            <option>Manager</option>
-            <option>Sales Representative</option>
-            <option>Research Director</option>
-            <option>Human Resources</option>
+                        <label for="JobRole">
 
-        </select>
+                            Job Role
 
-    </div>
+                        </label>
 
-    <!-- Business Travel -->
+                        <select
+                            id="JobRole"
+                            required
+                        >
 
-    <div class="form-group">
+                            <option value="">
+                                Select Job Role
+                            </option>
 
-        <label for="BusinessTravel">
-            Business Travel
-        </label>
+                            <option>Sales Executive</option>
+                            <option>Research Scientist</option>
+                            <option>Laboratory Technician</option>
+                            <option>Manufacturing Director</option>
+                            <option>Healthcare Representative</option>
+                            <option>Manager</option>
+                            <option>Sales Representative</option>
+                            <option>Research Director</option>
+                            <option>Human Resources</option>
 
-        <select
-            id="BusinessTravel"
-            required
-        >
+                        </select>
 
-            <option value="">
-                Select
-            </option>
+                    </div>
 
-            <option>Non-Travel</option>
-            <option>Travel_Rarely</option>
-            <option>Travel_Frequently</option>
+                    <!-- Business Travel -->
 
-        </select>
+                    <div class="form-group">
 
-    </div>
+                        <label for="BusinessTravel">
 
-    <!-- Over Time -->
+                            Business Travel
 
-    <div class="form-group">
+                        </label>
 
-        <label for="OverTime">
-            Over Time
-        </label>
+                        <select
+                            id="BusinessTravel"
+                            required
+                        >
 
-        <select
-            id="OverTime"
-            required
-        >
+                            <option value="">
+                                Select Travel Type
+                            </option>
 
-            <option value="">
-                Select
-            </option>
+                            <option>Non-Travel</option>
+                            <option>Travel_Rarely</option>
+                            <option>Travel_Frequently</option>
 
-            <option>No</option>
-            <option>Yes</option>
+                        </select>
 
-        </select>
+                    </div>
 
-    </div>
+                    <!-- OverTime -->
 
-</div>
+                    <div class="form-group">
 
-<!-- ================= COMPENSATION ================= -->
+                        <label for="OverTime">
+
+                            Over Time
+
+                        </label>
+
+                        <select
+                            id="OverTime"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option>No</option>
+                            <option>Yes</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- ================= COMPENSATION ================= -->
 
 <h3>Compensation</h3>
 
@@ -267,7 +282,9 @@
     <div class="form-group">
 
         <label for="MonthlyIncome">
+
             Monthly Income
+
         </label>
 
         <input
@@ -284,7 +301,9 @@
     <div class="form-group">
 
         <label for="StockOptionLevel">
+
             Stock Option Level
+
         </label>
 
         <input
@@ -298,16 +317,19 @@
     </div>
 
 </div>
+
+<!-- ================= PERFORMANCE ================= -->
+
 <h3>Performance & Satisfaction</h3>
 
 <div class="form-grid">
 
-    <!-- Environment Satisfaction -->
-
     <div class="form-group">
 
         <label for="EnvironmentSatisfaction">
+
             Environment Satisfaction
+
         </label>
 
         <input
@@ -320,12 +342,12 @@
 
     </div>
 
-    <!-- Job Satisfaction -->
-
     <div class="form-group">
 
         <label for="JobSatisfaction">
+
             Job Satisfaction
+
         </label>
 
         <input
@@ -338,12 +360,12 @@
 
     </div>
 
-    <!-- Work Life Balance -->
-
     <div class="form-group">
 
         <label for="WorkLifeBalance">
+
             Work Life Balance
+
         </label>
 
         <input
@@ -364,12 +386,12 @@
 
 <div class="form-grid">
 
-    <!-- Total Working Years -->
-
     <div class="form-group">
 
         <label for="TotalWorkingYears">
+
             Total Working Years
+
         </label>
 
         <input
@@ -381,12 +403,12 @@
 
     </div>
 
-    <!-- Years At Company -->
-
     <div class="form-group">
 
         <label for="YearsAtCompany">
+
             Years At Company
+
         </label>
 
         <input
@@ -398,12 +420,12 @@
 
     </div>
 
-    <!-- Years With Current Manager -->
-
     <div class="form-group">
 
         <label for="YearsWithCurrManager">
+
             Years With Current Manager
+
         </label>
 
         <input
@@ -417,7 +439,7 @@
 
 </div>
 
-<!-- ================= SUBMIT BUTTON ================= -->
+<!-- ================= SUBMIT ================= -->
 
 <button
     id="predictBtn"
@@ -433,32 +455,53 @@
 
 </div>
 
-<!-- ================= RIGHT CARD ================= -->
+<!-- ================= RIGHT PANEL ================= -->
+
 <div class="card result-card">
 
-    <h2>Prediction Result</h2>
+    <div class="result-header">
+
+        <h2>
+
+            Employee Risk Analysis
+
+        </h2>
+
+        <p>
+
+            AI-powered attrition prediction
+
+        </p>
+
+    </div>
 
     <div id="result">
 
         <div class="placeholder">
 
             <div class="placeholder-icon">
-                📊
+
+                🤖
+
             </div>
 
             <h3>
-                No Prediction Yet
+
+                Ready to Analyze
+
             </h3>
 
             <p>
 
-                Fill all employee details and click
+                Complete the employee information and click
 
                 <strong>
+
                     Predict Employee
+
                 </strong>
 
-                to generate an AI prediction.
+                to generate an AI-powered prediction with explainability.
 
             </p>
 
@@ -468,7 +511,7 @@
 
 </div>
 
-    </div>
+</div>
 
 </div>
 

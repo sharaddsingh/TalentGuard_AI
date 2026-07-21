@@ -1,6 +1,7 @@
-// ===============================
-// TalentGuard AI Frontend
-// ===============================
+// ============================================
+// TalentGuard AI
+// Frontend Logic
+// ============================================
 
 const API_URL = "http://127.0.0.1:8000/predict";
 
@@ -8,46 +9,37 @@ const form = document.getElementById("predictionForm");
 const resultDiv = document.getElementById("result");
 const predictBtn = document.getElementById("predictBtn");
 
-// ===============================
+// ============================================
 // Submit Form
-// ===============================
+// ============================================
 
 form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
-
-    // ===============================
-    // Form Validation
-    // ===============================
 
     if (!form.checkValidity()) {
         form.reportValidity();
         return;
     }
 
-    // ===============================
-    // Loading State
-    // ===============================
-
     predictBtn.disabled = true;
-    predictBtn.innerHTML = "Predicting...";
+    predictBtn.textContent = "Analyzing...";
 
     resultDiv.innerHTML = `
-        <div class="loading">
-            <div class="spinner"></div>
-            <p>Analyzing Employee...</p>
+        <div class="placeholder">
+            <div class="placeholder-icon">🤖</div>
+            <h3>Analyzing Employee</h3>
+            <p>Please wait while TalentGuard AI predicts the attrition risk.</p>
         </div>
     `;
 
-    // ===============================
-    // Employee Object
-    // ===============================
+    // ============================================
+    // Employee Payload
+    // ============================================
 
     const employee = {
 
-        // ==================================
-        // User Inputs (Visible Fields)
-        // ==================================
+        // Visible Fields
 
         Age: Number(document.getElementById("Age").value),
 
@@ -95,40 +87,38 @@ form.addEventListener("submit", async (e) => {
             document.getElementById("YearsWithCurrManager").value
         ),
 
-       // ==================================
-            // Hidden Default Values
-            // (Computed from X_train.csv)
-            // ==================================
+        // Hidden Default Values
 
-            Education: 3,
+        Education: 3,
 
-            EducationField: "Life Sciences",
+        EducationField: "Life Sciences",
 
-            DailyRate: 800,          // Median = 799.5
+        DailyRate: 800,
 
-            HourlyRate: 66,
+        HourlyRate: 66,
 
-            MonthlyRate: 14373,
+        MonthlyRate: 14373,
 
-            DistanceFromHome: 7,
+        DistanceFromHome: 7,
 
-            JobLevel: 2,
+        JobLevel: 2,
 
-            JobInvolvement: 3,
+        JobInvolvement: 3,
 
-            PercentSalaryHike: 14,
+        PercentSalaryHike: 14,
 
-            PerformanceRating: 3,
+        PerformanceRating: 3,
 
-            RelationshipSatisfaction: 4,
+        RelationshipSatisfaction: 4,
 
-            TrainingTimesLastYear: 3,
+        TrainingTimesLastYear: 3,
 
-            YearsInCurrentRole: 3,
+        YearsInCurrentRole: 3,
 
-            YearsSinceLastPromotion: 1,
+        YearsSinceLastPromotion: 1,
 
-            NumCompaniesWorked: 2
+        NumCompaniesWorked: 2
+
     };
 
     try {
@@ -138,7 +128,9 @@ form.addEventListener("submit", async (e) => {
             method: "POST",
 
             headers: {
+
                 "Content-Type": "application/json"
+
             },
 
             body: JSON.stringify(employee)
@@ -146,113 +138,139 @@ form.addEventListener("submit", async (e) => {
         });
 
         if (!response.ok) {
+
             throw new Error("Prediction failed.");
+
         }
 
         const data = await response.json();
 
         predictBtn.disabled = false;
-        predictBtn.innerHTML = "Predict Employee";
+        predictBtn.textContent = "Predict Employee";
+                // ============================================
+        // Safe Data
+        // ============================================
 
-        // ===============================
-        // Prediction Color
-        // ===============================
+        const prediction = data.Prediction ?? "Unknown";
 
-        let predictionClass = "monitor";
+        const probability = Number(data.Probability ?? 0);
 
-        if (data.Prediction.toLowerCase().includes("high")) {
+        const riskScore = Number(data.RiskScore ?? probability * 100);
+
+        const summary = data.Summary ?? "No summary available.";
+
+        const topFactors = Array.isArray(data.TopFactors)
+            ? data.TopFactors
+            : [];
+
+        // ============================================
+        // Prediction Badge
+        // ============================================
+
+        let predictionClass = "low-risk";
+
+        if (prediction.toLowerCase().includes("high")) {
+
             predictionClass = "high-risk";
+
         }
 
-        if (data.Prediction.toLowerCase().includes("low")) {
-            predictionClass = "low-risk";
-        }
+        // ============================================
+        // Priority (Frontend Logic)
+        // ============================================
 
-        // ===============================
-        // Priority Badge
-        // ===============================
+        let priority = "";
+        let priorityClass = "";
 
-        let priorityClass = "monitor";
+        if (probability < 0.35) {
 
-        if (data.Priority.toLowerCase().includes("high")) {
-            priorityClass = "high";
-        }
-
-        if (data.Priority.toLowerCase().includes("low")) {
+            priority = "Low";
             priorityClass = "low";
+
         }
-        // ===============================
+
+        else if (probability < 0.60) {
+
+            priority = "Medium";
+            priorityClass = "medium";
+
+        }
+
+        else {
+
+            priority = "High";
+            priorityClass = "high";
+
+        }
+
+        // ============================================
+        // Display Values
+        // ============================================
+
+        const probabilityPercent = (probability * 100).toFixed(1);
+
+        // ============================================
         // SHAP Cards
-        // ===============================
+        // ============================================
 
         let factorsHTML = "";
 
-        if (data.TopFactors && data.TopFactors.length > 0) {
+        if (topFactors.length > 0) {
 
-            data.TopFactors.forEach((factor) => {
+            topFactors.forEach((factor) => {
 
-                let impactClass = "risk-up";
+                let impactColor = "#16a34a";
 
                 if (
                     factor.impact &&
-                    factor.impact.toLowerCase().includes("decrease")
+                    factor.impact.toLowerCase().includes("increase")
                 ) {
 
-                    impactClass = "risk-down";
+                    impactColor = "#dc2626";
 
                 }
 
                 factorsHTML += `
 
-                    <div class="factor-card">
+                <div class="factor-card">
 
-                        <h4>
+                    <div class="factor-header">
 
-                            ${factor.feature}
+                        <h4>${factor.feature}</h4>
 
-                        </h4>
-
-                        <p>
-
-                            <strong>Importance:</strong>
+                        <span class="factor-score">
 
                             ${factor.importance}
 
-                        </p>
-
-                        <p>
-
-                            <strong>Impact:</strong>
-
-                            <span class="${impactClass}">
-
-                                ${factor.impact}
-
-                            </span>
-
-                        </p>
-
-                        <p>
-
-                            <strong>Reason:</strong>
-
-                            <br>
-
-                            ${factor.reason}
-
-                        </p>
-
-                        <p>
-
-                            <strong>Recommendation:</strong>
-
-                            <br>
-
-                            ${factor.recommendation}
-
-                        </p>
+                        </span>
 
                     </div>
+
+                    <p>
+
+                        <strong>Impact:</strong>
+
+                        <span style="color:${impactColor};font-weight:600;">
+
+                            ${factor.impact}
+
+                        </span>
+
+                    </p>
+
+                    <p>
+
+                        ${factor.reason}
+
+                    </p>
+
+                    <div class="recommendation">
+
+                        💡 ${factor.recommendation}
+
+                    </div>
+
+                </div>
 
                 `;
 
@@ -260,104 +278,198 @@ form.addEventListener("submit", async (e) => {
 
         }
 
-        // ===============================
+        else {
+
+            factorsHTML = `
+
+                <div class="summary-card">
+
+                    <h3>No Risk Factors Available</h3>
+
+                    <p>
+
+                        SHAP explanation is not available for this prediction.
+
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+        // ============================================
         // Result UI
-        // ===============================
+        // ============================================
 
         resultDiv.innerHTML = `
+        <div class="result-content">
+        <div class="summary-card">
 
-            <div class="result-box">
+    <h3>
 
-                <h3 class="${predictionClass}">
+        Attrition Probability
 
-                    ${data.Prediction}
+    </h3>
 
-                </h3>
+    <div class="progress-wrapper">
 
-                <p>
+        <div class="progress-bar">
 
-                    <strong>Probability :</strong>
-
-                    ${(data.Probability * 100).toFixed(2)}%
-
-                </p>
-
-                <p>
-
-                    <strong>Risk Score :</strong>
-
-                    ${data.RiskScore}
-
-                </p>
-
-                <p>
-
-                    <strong>Priority :</strong>
-
-                    <span class="priority ${priorityClass}">
-
-                        ${data.Priority}
-
-                    </span>
-
-                </p>
-
-                <hr>
-
-                <p>
-
-                    ${data.Summary}
-
-                </p>
-
-                <hr>
-
-                <h3>
-
-                    Top Risk Factors
-
-                </h3>
-
-                ${factorsHTML}
+            <div
+                class="progress-fill"
+                style="width:${probabilityPercent}%">
 
             </div>
 
-        `;
+        </div>
 
+        <p style="margin-top:10px;font-weight:600;">
 
-            }
+            ${probabilityPercent}%
 
-    // ===============================
+        </p>
+
+    </div>
+
+    <div
+        style="
+        display:flex;
+        justify-content:space-between;
+        margin-top:22px;
+        gap:20px;
+        ">
+
+        <div>
+
+            <small
+                style="color:#6b7280;">
+
+                Prediction
+
+            </small>
+
+            <h3
+                class="${predictionClass}"
+                style="margin-top:5px;">
+
+                ${prediction}
+
+            </h3>
+
+        </div>
+
+        <div>
+
+            <small
+                style="color:#6b7280;">
+
+                HR Priority
+
+            </small>
+
+            <h3
+                class="${priorityClass}"
+                style="margin-top:5px;">
+
+                ${priority}
+
+            </h3>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- SUMMARY -->
+
+    <div class="summary-card">
+
+        <h3>
+
+            AI Summary
+
+        </h3>
+
+        <p>
+
+            ${summary}
+
+        </p>
+
+    </div>
+
+    <!-- SHAP -->
+
+    <h3>
+
+        Top Risk Factors
+
+    </h3>
+
+    <div class="factors">
+
+        ${factorsHTML}
+
+    </div>
+
+</div>
+
+`;
+
+    }
+
+    // ============================================
     // Error Handling
-    // ===============================
+    // ============================================
 
     catch (error) {
 
+        console.error(error);
+
         predictBtn.disabled = false;
-        predictBtn.innerHTML = "Predict Employee";
+
+        predictBtn.textContent = "Predict Employee";
 
         resultDiv.innerHTML = `
 
-            <div class="result-box">
+        <div class="summary-card">
 
-                <h3 class="high-risk">
+            <h3>
 
-                    Prediction Failed
+                Prediction Failed
 
-                </h3>
+            </h3>
 
-                <p>
+            <p>
 
-                    ${error.message}
+                ${error.message}
 
-                </p>
+            </p>
 
-            </div>
+        </div>
 
         `;
-
-        console.error(error);
 
     }
 
 });
+
+// ============================================
+// Helper Functions
+// ============================================
+
+function formatPercentage(value){
+
+    return `${Number(value).toFixed(1)}%`;
+
+}
+
+function capitalize(text){
+
+    if(!text) return "";
+
+    return text.charAt(0).toUpperCase() + text.slice(1);
+
+}
